@@ -121,7 +121,9 @@ function Homepage() {
             closeDrawer={handleDrawerClose}
             openDrawer={handleDrawerOpen}
           />
-          <TableCustom />
+          <div className=" mt-16 w-full">
+            <TableCustom />
+          </div>
         </Box>
       </div>
     </ThemeProvider>
