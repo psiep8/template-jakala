@@ -84,7 +84,7 @@ function SideBarCustom(props) {
             <Typography variant="h6" component="div" className=" flex-grow">
               <img
                 src="/Jakala_logo_rgb_full_neg.png"
-                className={`w-[160px] h-[68px] mt-2 transition-width duration-[${theme.transitions.duration.leavingScreen}ms]`}
+                className={`w-[160px] h-[68px] mt-2 transition-width duration-0`}
                 alt="Logo"
               />
             </Typography>
@@ -92,7 +92,7 @@ function SideBarCustom(props) {
             <Typography variant="h6" component="div" className=" flex-grow">
               <img
                 src="/J_rgb_full_neg.png"
-                className={`w-[48px] h-[68px] mt-2 p-1 transition-width duration-[${theme.transitions.duration.leavingScreen}ms]`}
+                className={`w-[48px] h-[68px] mt-2 p-1 transition-width duration-0`}
                 alt="Logo"
               />
             </Typography>

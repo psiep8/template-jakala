@@ -54,7 +54,7 @@ function Homepage() {
             <TableCustom />
           </div>
         </Box>
-        {/* <div className=" flex items-end absolute bottom-0">
+        {/* <div className=" flex items-end absolute bottom-0 ju">
           <Box className="bg-custom-blue text-white">
             <p className="ml-20 text-center text-sm">
               JAKALA S.P.A. S.B. | CORSO DI PORTA ROMANA 15 – 20122 | C.F. E

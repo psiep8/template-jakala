@@ -3,8 +3,8 @@ import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SideBarCustom from "../Components/SidebarCustom";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import LeftIcon from "@mui/icons-material/ChevronLeft";
+import RightIcon from "@mui/icons-material/ChevronRight";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +47,7 @@ function AppBarCustom() {
             onClick={isDrawerOpen ? close : open}
             className="text-white"
           >
-            {isDrawerOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {isDrawerOpen ? <LeftIcon /> : <RightIcon />}
           </IconButton>
           <IconButton size="large" edge="start" className="text-white ml-auto">
             <p className="text-base mr-4">Andrea Ravasio</p>
