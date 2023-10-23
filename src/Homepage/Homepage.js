@@ -74,6 +74,8 @@ function Homepage() {
     setIsDrawerOpen(false);
   };
 
+  let lengrhDiv = isDrawerOpen ? " w-[240px]" : "w-[50px]";
+
   return (
     <ThemeProvider theme={theme}>
       <div className="h-screen bg-white font-raleway">
@@ -103,7 +105,10 @@ function Homepage() {
             openDrawer={handleDrawerOpen}
           />
           <div className=" mt-16 w-full"></div>
-          <TableCustom />
+          <div className="flex w-full">
+            <div className={lengrhDiv}></div>
+            <TableCustom />
+          </div>
         </Box>
       </div>
     </ThemeProvider>
