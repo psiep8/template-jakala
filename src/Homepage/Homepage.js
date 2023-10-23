@@ -96,7 +96,7 @@ function Homepage() {
   return (
     <ThemeProvider theme={theme}>
       <div className="h-screen bg-white">
-        <Box sx={{ flexGrow: 1, display: "flex" }}>
+        <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
           <CssBaseline />
           <AppBar position="fixed" open={isDrawerOpen}>
             <Toolbar>
@@ -121,9 +121,8 @@ function Homepage() {
             closeDrawer={handleDrawerClose}
             openDrawer={handleDrawerOpen}
           />
-          <div className=" mt-16 w-full">
-            <TableCustom />
-          </div>
+          <div className=" mt-16 w-full"></div>
+          <TableCustom />
         </Box>
       </div>
     </ThemeProvider>
