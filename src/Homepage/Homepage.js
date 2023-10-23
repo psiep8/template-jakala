@@ -54,16 +54,16 @@ function Homepage() {
             <TableCustom />
           </div>
         </Box>
-        <div className=" flex items-end absolute bottom-0">
+        {/* <div className=" flex items-end absolute bottom-0">
           <Box className="bg-custom-blue text-white">
-            <p className="ml-20 text-center">
+            <p className="ml-20 text-center text-sm">
               JAKALA S.P.A. S.B. | CORSO DI PORTA ROMANA 15 – 20122 | C.F. E
               P.I. E N° ISCRIZIONE AL REGISTRO IMPRESE DI MILANO 08462130967
               Società unipersonale. Cap. soc. deliberato Euro 3.831.764,00,
               interamente sottoscritto e versato.
             </p>
           </Box>
-        </div>
+        </div> */}
       </div>
     </ThemeProvider>
   );
