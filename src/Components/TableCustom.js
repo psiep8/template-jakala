@@ -6,8 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { IconButton } from "@mui/material";
+import { Button, IconButton, Input, TableSortLabel } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import TextField from "@mui/material/TextField";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 function createData(nome, cognome, team, dataAssunzioneAttiva, dettagli) {
   return { nome, cognome, team, dataAssunzioneAttiva, dettagli };
@@ -25,7 +28,7 @@ const rows = [
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "grey",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -48,6 +51,25 @@ function TableCustom() {
     <>
       <div className="flex justify-center w-full mt-6">
         <div className="w-3/4">
+          <div className="flex flex-row mb-3 w-full justify-between items-center">
+            <p className="font-bold text-lg">UTENTI</p>
+            <div className="flex flex-row items-center space-x-2">
+              <FilterAltIcon />
+
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                label="Cerca utente..."
+              />
+              <Button
+                startIcon={<PersonAddAlt1Icon></PersonAddAlt1Icon>}
+                variant="outlined"
+              >
+                Aggiungi utente
+              </Button>
+            </div>
+          </div>
+
           <TableContainer component={Paper} className=" max-h-[500px]">
             <Table
               stickyHeader
@@ -56,24 +78,39 @@ function TableCustom() {
             >
               <TableHead>
                 <TableRow>
-                  <StyledTableCell className=" font-raleway" align="right">Nome</StyledTableCell>
-                  <StyledTableCell className=" font-raleway" align="right">Cognome</StyledTableCell>
-                  <StyledTableCell className=" font-raleway" align="right">Team</StyledTableCell>
                   <StyledTableCell className=" font-raleway" align="right">
-                    Data Assunzione Attiva
+                    {/* <TableSortLabel></TableSortLabel> */}
+                    NOME
                   </StyledTableCell>
-                  <StyledTableCell className=" font-raleway" align="right">Dettagli</StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="right">
+                    COGNOME
+                  </StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="right">
+                    TEAM
+                  </StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="right">
+                    DATA ASSUNZIONE ATTIVA
+                  </StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="right">
+                    DETTAGLI
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {rows.map((row) => (
-                  <StyledTableRow 
+                  <StyledTableRow
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell className=" font-raleway" align="right">{row.nome}</TableCell>
-                    <TableCell className=" font-raleway" align="right">{row.cognome}</TableCell>
-                    <TableCell className=" font-raleway" align="right">{row.team}</TableCell>
+                    <TableCell className=" font-raleway" align="right">
+                      {row.nome}
+                    </TableCell>
+                    <TableCell className=" font-raleway" align="right">
+                      {row.cognome}
+                    </TableCell>
+                    <TableCell className=" font-raleway" align="right">
+                      {row.team}
+                    </TableCell>
                     <TableCell className=" font-raleway" align="right">
                       {row.dataAssunzioneAttiva}
                     </TableCell>
@@ -82,7 +119,7 @@ function TableCustom() {
                         <InfoIcon></InfoIcon>
                       </IconButton>
                     </TableCell>
-                  </StyledTableRow >
+                  </StyledTableRow>
                 ))}
               </TableBody>
             </Table>
