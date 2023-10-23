@@ -50,7 +50,7 @@ function AppBarCustom() {
             {isDrawerOpen ? <LeftIcon /> : <RightIcon />}
           </IconButton>
           <IconButton size="large" edge="start" className="text-white ml-auto">
-            <p className="text-base mr-4">Andrea Ravasio</p>
+            <p className="text-base mr-4 font-raleway">Andrea Ravasio</p>
             <AccountCircleIcon></AccountCircleIcon>
           </IconButton>
         </Toolbar>

@@ -25,7 +25,7 @@ function SideBarItem(props) {
           </ListItemIcon>
           <ListItemText
             primary={props.text}
-            className=" text-white"
+            className=" text-white font-raleway"
             sx={{ opacity: props.open ? 1 : 0 }}
           />
         </ListItemButton>
