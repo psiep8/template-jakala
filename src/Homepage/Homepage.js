@@ -76,7 +76,7 @@ function Homepage() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="h-screen bg-white">
+      <div className="h-screen bg-white font-raleway">
         <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
           <CssBaseline />
           <AppBar position="fixed" open={isDrawerOpen}>

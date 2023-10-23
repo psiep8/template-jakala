@@ -28,19 +28,27 @@ function TableCustom() {
     <>
       <div className="flex justify-center w-full mt-6">
         <div className="w-3/4">
-          <TableContainer component={Paper} sx={{ maxHeight: 500 }}>
+          <TableContainer component={Paper} className=" max-h-[500px]">
             <Table
               stickyHeader
-              sx={{ minWidth: 650 }}
+              className="min-w-[650px]"
               aria-label="simple table"
             >
               <TableHead>
                 <TableRow>
-                  <TableCell>Dessert</TableCell>
-                  <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                  <TableCell className=" font-raleway">Dessert</TableCell>
+                  <TableCell align="right" className=" font-raleway">
+                    Calories
+                  </TableCell>
+                  <TableCell className=" font-raleway" align="right">
+                    Fat&nbsp;(g)
+                  </TableCell>
+                  <TableCell className=" font-raleway" align="right">
+                    Carbs&nbsp;(g)
+                  </TableCell>
+                  <TableCell className=" font-raleway" align="right">
+                    Protein&nbsp;(g)
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -49,13 +57,25 @@ function TableCustom() {
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell
+                      className=" font-raleway"
+                      component="th"
+                      scope="row"
+                    >
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell className=" font-raleway" align="right">
+                      {row.calories}
+                    </TableCell>
+                    <TableCell className=" font-raleway" align="right">
+                      {row.fat}
+                    </TableCell>
+                    <TableCell className=" font-raleway" align="right">
+                      {row.carbs}
+                    </TableCell>
+                    <TableCell className=" font-raleway" align="right">
+                      {row.protein}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
