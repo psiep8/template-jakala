@@ -21,7 +21,7 @@ function SideBarItem(props) {
               mr: props.open ? 3 : "auto",
             }}
           >
-            {props.index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            {props.icons[props.index]}
           </ListItemIcon>
           <ListItemText
             primary={props.text}
