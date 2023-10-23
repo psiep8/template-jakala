@@ -5,6 +5,19 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import SideBarItem from "./SideBarItem";
+import GroupIcon from "@mui/icons-material/Group";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import TranslateIcon from "@mui/icons-material/Translate";
+import ConstructionIcon from "@mui/icons-material/Construction";
+
+const listMenuText = ["Users", "Notification", "Translations", "Configuration"];
+
+const listMenuIcons = [
+  <GroupIcon />,
+  <NotificationsIcon />,
+  <TranslateIcon />,
+  <ConstructionIcon />,
+];
 
 const drawerWidth = 240;
 
@@ -71,7 +84,7 @@ function SideBarCustom(props) {
             <Typography variant="h6" component="div" className=" flex-grow">
               <img
                 src="/Jakala_logo_rgb_full_neg.png"
-                className="w-[133px] h-[55px] mt-3"
+                className={`w-[160px] h-[68px] mt-2 transition-width duration-[${theme.transitions.duration.leavingScreen}ms]`}
                 alt="Logo"
               />
             </Typography>
@@ -79,7 +92,7 @@ function SideBarCustom(props) {
             <Typography variant="h6" component="div" className=" flex-grow">
               <img
                 src="/J_rgb_full_neg.png"
-                className="w-[48px] h-[68px] p-1"
+                className={`w-[48px] h-[68px] mt-2 p-1 transition-width duration-[${theme.transitions.duration.leavingScreen}ms]`}
                 alt="Logo"
               />
             </Typography>
@@ -87,16 +100,13 @@ function SideBarCustom(props) {
         </DrawerHeader>
         <Divider />
         <List>
-          {[
-            "Inbox",
-            "Starred",
-            "Send email",
-            "Drafts",
-            "All mail",
-            "Trash",
-            "Spam",
-          ].map((text, index) => (
-            <SideBarItem open={open} text={text} index={index} />
+          {listMenuText.map((text, index) => (
+            <SideBarItem
+              open={open}
+              text={text}
+              index={index}
+              icons={listMenuIcons}
+            />
           ))}
         </List>
       </Drawer>
