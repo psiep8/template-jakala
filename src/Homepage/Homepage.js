@@ -85,13 +85,14 @@ function Homepage() {
             <Toolbar>
               <IconButton
                 onClick={isDrawerOpen ? handleDrawerClose : handleDrawerOpen}
+                className="text-white"
               >
                 {isDrawerOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
               </IconButton>
               <IconButton
                 size="large"
                 edge="start"
-                sx={{ color: "white", ml: "auto" }}
+                className="text-white ml-auto"
               >
                 <p className="text-base mr-4">Andrea Ravasio</p>
                 <AccountCircleIcon></AccountCircleIcon>

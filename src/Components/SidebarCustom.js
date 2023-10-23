@@ -4,12 +4,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import SideBarItem from "./SideBarItem";
 
 const drawerWidth = 240;
 
@@ -92,47 +87,16 @@ function SideBarCustom(props) {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                className="min-h-[48px] px[2.5px]"
-                sx={{
-                  justifyContent: open ? "initial" : "center",
-                }}
-              >
-                <ListItemIcon
-                  className="min-w-0 justify-center"
-                  sx={{
-                    mr: open ? 3 : "auto",
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding className=" block">
-              <ListItemButton
-                className="min-h-[48px] px[2.5px]"
-                sx={{
-                  justifyContent: open ? "initial" : "center",
-                }}
-              >
-                <ListItemIcon
-                  className="min-w-0 justify-center"
-                  sx={{
-                    mr: open ? 3 : "auto",
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+          {[
+            "Inbox",
+            "Starred",
+            "Send email",
+            "Drafts",
+            "All mail",
+            "Trash",
+            "Spam",
+          ].map((text, index) => (
+            <SideBarItem open={open} text={text} index={index} />
           ))}
         </List>
       </Drawer>
