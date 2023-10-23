@@ -48,21 +48,21 @@ function TableCustom() {
     <>
       <div className="flex justify-center w-full mt-6">
         <div className="w-3/4">
-          <TableContainer component={Paper} sx={{ maxHeight: 500 }}>
+          <TableContainer component={Paper} className=" max-h-[500px]">
             <Table
               stickyHeader
-              sx={{ minWidth: 650 }}
+              className="min-w-[650px]"
               aria-label="simple table"
             >
               <TableHead>
                 <TableRow>
-                  <StyledTableCell align="right">Nome</StyledTableCell>
-                  <StyledTableCell align="right">Cognome</StyledTableCell>
-                  <StyledTableCell align="right">Team</StyledTableCell>
-                  <StyledTableCell align="right">
+                  <StyledTableCell className=" font-raleway" align="right">Nome</StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="right">Cognome</StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="right">Team</StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="right">
                     Data Assunzione Attiva
                   </StyledTableCell>
-                  <StyledTableCell align="right">Dettagli</StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="right">Dettagli</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -71,13 +71,13 @@ function TableCustom() {
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell align="right">{row.nome}</TableCell>
-                    <TableCell align="right">{row.cognome}</TableCell>
-                    <TableCell align="right">{row.team}</TableCell>
-                    <TableCell align="right">
+                    <TableCell className=" font-raleway" align="right">{row.nome}</TableCell>
+                    <TableCell className=" font-raleway" align="right">{row.cognome}</TableCell>
+                    <TableCell className=" font-raleway" align="right">{row.team}</TableCell>
+                    <TableCell className=" font-raleway" align="right">
                       {row.dataAssunzioneAttiva}
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell className=" font-raleway" align="right">
                       <IconButton>
                         <InfoIcon></InfoIcon>
                       </IconButton>

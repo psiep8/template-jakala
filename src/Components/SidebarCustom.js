@@ -73,7 +73,7 @@ function SideBarCustom(props) {
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           {open ? (
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" className=" flex-grow">
               <img
                 src="/Jakala_logo_rgb_full_neg.png"
                 className="w-[133px] h-[55px] mt-3"
@@ -81,7 +81,7 @@ function SideBarCustom(props) {
               />
             </Typography>
           ) : (
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" className=" flex-grow">
               <img
                 src="/J_rgb_full_neg.png"
                 className="w-[48px] h-[68px] p-1"
@@ -95,17 +95,15 @@ function SideBarCustom(props) {
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
+                className="min-h-[48px] px[2.5px]"
                 sx={{
-                  minHeight: 48,
                   justifyContent: open ? "initial" : "center",
-                  px: 2.5,
                 }}
               >
                 <ListItemIcon
+                  className="min-w-0 justify-center"
                   sx={{
-                    minWidth: 0,
                     mr: open ? 3 : "auto",
-                    justifyContent: "center",
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -117,19 +115,17 @@ function SideBarCustom(props) {
         </List>
         <List>
           {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+            <ListItem key={text} disablePadding className=" block">
               <ListItemButton
+                className="min-h-[48px] px[2.5px]"
                 sx={{
-                  minHeight: 48,
                   justifyContent: open ? "initial" : "center",
-                  px: 2.5,
                 }}
               >
                 <ListItemIcon
+                  className="min-w-0 justify-center"
                   sx={{
-                    minWidth: 0,
                     mr: open ? 3 : "auto",
-                    justifyContent: "center",
                   }}
                 >
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
