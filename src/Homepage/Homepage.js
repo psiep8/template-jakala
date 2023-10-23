@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -25,6 +24,9 @@ import Paper from "@mui/material/Paper";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Pagination from "@mui/material/Pagination";
+import SideBarCustom from "../Components/SidebarCustom";
+import { styled, useTheme } from "@mui/material/styles";
+import MuiAppBar from "@mui/material/AppBar";
 
 const theme = createTheme({
   components: {
@@ -73,6 +75,24 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: 240,
+    width: `calc(100% - 240px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
 function Homepage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -88,14 +108,19 @@ function Homepage() {
     <ThemeProvider theme={theme}>
       <div className="h-screen bg-custom-blue">
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+          <AppBar position="static" open={isDrawerOpen}>
             <Toolbar>
               <IconButton
                 size="large"
                 edge="start"
                 aria-label="menu"
-                sx={{ color: "white", mr: 4 }}
                 onClick={handleDrawerOpen}
+                sx={{
+                  marginRight: 5,
+                  ...(isDrawerOpen && { display: "none" }),
+                  color: "white",
+                  mr: 4,
+                }}
               >
                 <MenuIcon />
               </IconButton>
@@ -118,7 +143,12 @@ function Homepage() {
             </Toolbar>
           </AppBar>
         </Box>
-        <Drawer
+        <SideBarCustom
+          open={isDrawerOpen}
+          closeDrawer={handleDrawerClose}
+          openDrawer={handleDrawerOpen}
+        />
+        {/* <Drawer
           open={isDrawerOpen}
           onClose={handleDrawerClose}
           anchor="left" // Puoi modificare l'ancora del Drawer a tuo piacimento
@@ -147,7 +177,7 @@ function Homepage() {
               )}
             </List>
           </Box>
-        </Drawer>
+        </Drawer> */}
         <div className="flex justify-center w-full mt-6">
           <div className="w-3/4">
             <TableContainer component={Paper} sx={{ maxHeight: 500 }}>
