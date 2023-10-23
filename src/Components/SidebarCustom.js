@@ -5,7 +5,6 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -45,7 +44,8 @@ const closedMixin = (theme) => ({
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-end",
+  justifyContent: "center",
+  height: "64px",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
@@ -65,6 +65,9 @@ const Drawer = styled(MuiDrawer, {
   ...(!open && {
     ...closedMixin(theme),
     "& .MuiDrawer-paper": closedMixin(theme),
+    docked: {
+      display: "none",
+    },
   }),
 }));
 
@@ -74,14 +77,21 @@ function SideBarCustom(props) {
 
   return (
     <>
-      <CssBaseline />
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <IconButton
-            onClick={props.open ? props.closeDrawer : props.openDrawer}
-          >
-            {props.open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+          {open ? (
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <img
+                src="/Jakala_logo_rgb_full_neg.png"
+                className="w-[60%] mt-3"
+                alt="Logo"
+              />
+            </Typography>
+          ) : (
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <img src="/J_rgb_full_neg.png" className=" p-1" alt="Logo" />
+            </Typography>
+          )}
         </DrawerHeader>
         <Divider />
         <List>
