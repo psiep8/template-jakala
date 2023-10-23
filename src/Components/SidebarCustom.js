@@ -76,13 +76,17 @@ function SideBarCustom(props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <img
                 src="/Jakala_logo_rgb_full_neg.png"
-                className="w-[60%] mt-3"
+                className="w-[133px] h-[55px] mt-3"
                 alt="Logo"
               />
             </Typography>
           ) : (
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <img src="/J_rgb_full_neg.png" className=" p-1" alt="Logo" />
+              <img
+                src="/J_rgb_full_neg.png"
+                className="w-[48px] h-[68px] p-1"
+                alt="Logo"
+              />
             </Typography>
           )}
         </DrawerHeader>
