@@ -1,6 +1,7 @@
 import Table from "@mui/material/Table";
+import { styled } from "@mui/material/styles";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -22,6 +23,26 @@ const rows = [
   createData("Andrea", "Ravasio", "Team B", "Sì"),
 ];
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
 function TableCustom() {
   return (
     <>
@@ -35,16 +56,18 @@ function TableCustom() {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell align="right">Nome</TableCell>
-                  <TableCell align="right">Cognome</TableCell>
-                  <TableCell align="right">Team</TableCell>
-                  <TableCell align="right">Data Assunzione Attiva</TableCell>
-                  <TableCell align="right">Dettagli</TableCell>
+                  <StyledTableCell align="right">Nome</StyledTableCell>
+                  <StyledTableCell align="right">Cognome</StyledTableCell>
+                  <StyledTableCell align="right">Team</StyledTableCell>
+                  <StyledTableCell align="right">
+                    Data Assunzione Attiva
+                  </StyledTableCell>
+                  <StyledTableCell align="right">Dettagli</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {rows.map((row) => (
-                  <TableRow
+                  <StyledTableRow 
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
@@ -59,7 +82,7 @@ function TableCustom() {
                         <InfoIcon></InfoIcon>
                       </IconButton>
                     </TableCell>
-                  </TableRow>
+                  </StyledTableRow >
                 ))}
               </TableBody>
             </Table>
