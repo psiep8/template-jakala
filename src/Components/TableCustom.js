@@ -222,7 +222,9 @@ function TableCustom() {
                 <Button variant="contained" sx={{ mr: 1 }}>
                   SÌ
                 </Button>
-                <Button variant="outlined">NO</Button>
+                <Button variant="outlined" onClick={handleClose}>
+                  NO
+                </Button>
               </DialogActions>
             </Dialog>
           </div>
