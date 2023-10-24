@@ -27,8 +27,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import Tooltip from "@mui/material/Tooltip";
 
-function createData(nome, cognome, team, dataAssunzioneAttiva, dettagli) {
-  return { nome, cognome, team, dataAssunzioneAttiva, dettagli };
+function createData(id, nome, cognome, team, dataAssunzioneAttiva, dettagli) {
+  return { id, nome, cognome, team, dataAssunzioneAttiva, dettagli };
 }
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -36,13 +36,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const rows = [
-  createData("Mario", "Rossi", "Team A", "Sì"),
-  createData("Anna", "Verdi", "Team B", "No"),
-  createData("Luigi", "Bianchi", "Team C", "Sì"),
-  createData("Laura", "Neri", "Team A", "No"),
-  createData("Lorenzo", "Biraghi", "Team B", "Sì"),
-  createData("Giuseppe", "Romagnoli", "Team B", "Sì"),
-  createData("Andrea", "Ravasio", "Team B", "Sì"),
+  createData(1, "Mario", "Rossi", "Team A", "Sì"),
+  createData(2, "Anna", "Verdi", "Team B", "No"),
+  createData(3, "Luigi", "Bianchi", "Team C", "Sì"),
+  createData(4, "Laura", "Neri", "Team A", "No"),
+  createData(5, "Lorenzo", "Biraghi", "Team B", "Sì"),
+  createData(6, "Giuseppe", "Romagnoli", "Team B", "Sì"),
+  createData(7, "Andrea", "Ravasio", "Team B", "Sì"),
 ];
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -237,7 +237,7 @@ function TableCustom() {
             <DialogTitle>Dati di {selectedName}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-slide-description">
-                Vuoi disattivare l'utente?
+                CIAO{" "}
               </DialogContentText>
             </DialogContent>
             <DialogActions>
