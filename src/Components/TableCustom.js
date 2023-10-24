@@ -78,14 +78,27 @@ const style = {
 };
 
 function TableCustom() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = (name) => {
-    setSelectedName(name); // Imposta il nome selezionato
-    setOpen(true);
-  };
-  const handleClose = () => setOpen(false);
+  const [openFirstDialog, setOpenFirstDialog] = React.useState(false);
+  const [openSecondDialog, setOpenSecondDialog] = React.useState(false);
+  const [selectedName, setSelectedName] = React.useState(""); // Stato condiviso tra i dialog
 
-  const [selectedName, setSelectedName] = React.useState(""); // Stato per memorizzare il nome selezionato
+  const handleOpenFirstDialog = (name) => {
+    setSelectedName(name); // Imposta il nome selezionato
+    setOpenFirstDialog(true);
+  };
+
+  const handleOpenSecondDialog = (name) => {
+    setSelectedName(name); // Imposta lo stesso nome selezionato
+    setOpenSecondDialog(true);
+  };
+
+  const handleCloseFirstDialog = () => {
+    setOpenFirstDialog(false);
+  };
+
+  const handleCloseSecondDialog = () => {
+    setOpenSecondDialog(false);
+  };
 
   // const dispatch = useDispatch();
   // const isModalOpen = useSelector((state) => state.modal.value);
@@ -166,14 +179,18 @@ function TableCustom() {
                       <Tooltip title="Disattiva">
                         <IconButton
                           onClick={() =>
-                            handleOpen(`${row.nome} ${row.cognome}`)
+                            handleOpenFirstDialog(`${row.nome} ${row.cognome}`)
                           }
                         >
                           <RemoveCircleIcon className="text-jRed"></RemoveCircleIcon>
                         </IconButton>
                       </Tooltip>
                       <Tooltip title="Dettagli">
-                        <IconButton>
+                        <IconButton
+                          onClick={() =>
+                            handleOpenSecondDialog(`${row.nome} ${row.cognome}`)
+                          }
+                        >
                           <InfoIcon></InfoIcon>
                         </IconButton>
                       </Tooltip>
@@ -183,49 +200,52 @@ function TableCustom() {
               </TableBody>
             </Table>
           </TableContainer>
-          {/* <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+
+          <Dialog
+            open={openFirstDialog}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleCloseFirstDialog}
+            aria-describedby="alert-dialog-slide-description"
           >
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                {selectedName}
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
-                Sei sicuro di voler disattivare l'utente?
-              </Typography>
-              <Box sx={{ placeItems: "end" }}>
-                <Button variant="contained" sx={{ mr: 3 }}>
-                  SÌ
-                </Button>
-                <Button variant="outlined">NO</Button>
-              </Box>
-            </Box>
-          </Modal> */}
-          <div>
-            <Dialog
-              open={open}
-              TransitionComponent={Transition}
-              keepMounted
-              onClose={handleClose}
-              aria-describedby="alert-dialog-slide-description"
-            >
-              <DialogTitle>{selectedName}</DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
-                  Vuoi disattivare l'utente?
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button variant="contained" sx={{ mr: 1 }}>
-                  SÌ
-                </Button>
-                <Button variant="outlined">NO</Button>
-              </DialogActions>
-            </Dialog>
-          </div>
+            <DialogTitle>{selectedName}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+                Vuoi disattivare l'utente?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                variant="contained"
+                onClick={handleCloseFirstDialog}
+                sx={{ mr: 1 }}
+              >
+                SÌ
+              </Button>
+              <Button variant="outlined" onClick={handleCloseFirstDialog}>
+                NO
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <Dialog
+            open={openSecondDialog}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleCloseSecondDialog}
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle>Dati di {selectedName}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+                Vuoi disattivare l'utente?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="outlined" onClick={handleCloseSecondDialog}>
+                Chiudi
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </div>
     </>
