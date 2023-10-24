@@ -8,6 +8,10 @@ import TableCustom from "../Components/TableCustom";
 import AppBarCustom from "../Components/AppBarCustom";
 import { useSelector } from "react-redux";
 
+import { Route, Routes } from "react-router-dom";
+
+import UserDetails from "../UserDetails/UserDetails";
+
 const theme = createTheme({
   components: {
     MuiAppBar: {
@@ -73,7 +77,11 @@ function Homepage() {
           <AppBarCustom />
           <div className="flex w-full">
             <div className={lengrhDiv}></div>
-            <TableCustom />
+            {/* <TableCustom /> */}
+            <Routes>
+              <Route path="/" element={<TableCustom />} />
+              <Route path="/details/:id" element={<UserDetails />} />
+            </Routes>
           </div>
         </Box>
         {/* <div className=" flex items-end absolute bottom-0 ju">

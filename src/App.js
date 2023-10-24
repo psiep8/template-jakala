@@ -7,12 +7,14 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Homepage from "./Homepage/Homepage";
+import UserDetails from "./UserDetails/UserDetails";
 import CssBaseline from "@mui/material/CssBaseline";
 
 const routeDefinition = createRoutesFromElements(
   <Route>
     <Route path="/login" element={<LoginPage></LoginPage>}></Route>
     <Route path="/homepage" element={<Homepage></Homepage>}></Route>
+    <Route path="/details/:id" element={<UserDetails />}></Route>
   </Route>
 );
 const router = createBrowserRouter(routeDefinition);

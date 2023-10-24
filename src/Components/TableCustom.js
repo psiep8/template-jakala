@@ -13,6 +13,8 @@ import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import TextField from "@mui/material/TextField";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { Link } from "react-router-dom";
+
 // import { modalActions } from "../feature/modal/modalSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -26,23 +28,157 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import Tooltip from "@mui/material/Tooltip";
+import AlertCustom from "../Components/AlertCustom";
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
-function createData(id, nome, cognome, team, dataAssunzioneAttiva, dettagli) {
-  return { id, nome, cognome, team, dataAssunzioneAttiva, dettagli };
+function createData(
+  id,
+  nome,
+  cognome,
+  team,
+  dataAssunzioneAttiva,
+  dataDiNascita,
+  luogoDiNascita,
+  sesso,
+  codiceFiscale,
+  indirizzoDiResidenza,
+  ruoloAziendale,
+  manager,
+  sedeOperativa
+) {
+  return {
+    id,
+    nome,
+    cognome,
+    team,
+    dataAssunzioneAttiva,
+    dataDiNascita,
+    luogoDiNascita,
+    sesso,
+    codiceFiscale,
+    indirizzoDiResidenza,
+    ruoloAziendale,
+    manager,
+    sedeOperativa,
+  };
 }
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const rows = [
-  createData(1, "Mario", "Rossi", "Team A", "Sì"),
-  createData(2, "Anna", "Verdi", "Team B", "No"),
-  createData(3, "Luigi", "Bianchi", "Team C", "Sì"),
-  createData(4, "Laura", "Neri", "Team A", "No"),
-  createData(5, "Lorenzo", "Biraghi", "Team B", "Sì"),
-  createData(6, "Giuseppe", "Romagnoli", "Team B", "Sì"),
-  createData(7, "Andrea", "Ravasio", "Team B", "Sì"),
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+export const rows = [
+  createData(
+    1,
+    "Mario",
+    "Rossi",
+    "Team A",
+    "Sì",
+    "1990-03-15",
+    "Milano",
+    "Maschio",
+    "RSSMRA90A15H501X",
+    "Via Roma 123",
+    "Sviluppatore",
+    "Giovanni Bianchi",
+    "Milano"
+  ),
+  createData(
+    2,
+    "Anna",
+    "Verdi",
+    "Team B",
+    "No",
+    "1988-07-22",
+    "Roma",
+    "Femmina",
+    "VRDANN88L22H123Y",
+    "Via Napoli 456",
+    "Manager",
+    "Antonio Neri",
+    "Roma"
+  ),
+  createData(
+    3,
+    "Luigi",
+    "Bianchi",
+    "Team C",
+    "Sì",
+    "1995-11-10",
+    "Napoli",
+    "Maschio",
+    "BNCLUI95T10N789Z",
+    "Via Venezia 789",
+    "Sviluppatore",
+    "Francesca Rossi",
+    "Napoli"
+  ),
+  createData(
+    4,
+    "Laura",
+    "Neri",
+    "Team A",
+    "No",
+    "1987-02-05",
+    "Torino",
+    "Femmina",
+    "NRILAU87B05T987A",
+    "Via Firenze 321",
+    "Manager",
+    "Paolo Verdi",
+    "Torino"
+  ),
+  createData(
+    5,
+    "Lorenzo",
+    "Biraghi",
+    "Team B",
+    "Sì",
+    "1992-09-18",
+    "Milano",
+    "Maschio",
+    "BRGLOR92P18T654D",
+    "Via Genova 567",
+    "Sviluppatore",
+    "Daniela Romagnoli",
+    "Milano"
+  ),
+  createData(
+    6,
+    "Giuseppe",
+    "Romagnoli",
+    "Team B",
+    "Sì",
+    "1993-06-30",
+    "Roma",
+    "Maschio",
+    "RMNGPP93F30R321E",
+    "Via Palermo 987",
+    "Sviluppatore",
+    "Roberto Rossi",
+    "Roma"
+  ),
+  createData(
+    7,
+    "Andrea",
+    "Ravasio",
+    "Team B",
+    "Sì",
+    "1989-12-07",
+    "Napoli",
+    "Maschio",
+    "RVSAND89C07N123T",
+    "Via Catania 234",
+    "Sviluppatore",
+    "Maria Verdi",
+    "Napoli"
+  ),
 ];
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -78,8 +214,8 @@ const style = {
 };
 
 function TableCustom() {
+  const [openAlert, setOpenAlert] = React.useState(false);
   const [openFirstDialog, setOpenFirstDialog] = React.useState(false);
-  const [openSecondDialog, setOpenSecondDialog] = React.useState(false);
   const [selectedName, setSelectedName] = React.useState(""); // Stato condiviso tra i dialog
 
   const handleOpenFirstDialog = (name) => {
@@ -87,17 +223,16 @@ function TableCustom() {
     setOpenFirstDialog(true);
   };
 
-  const handleOpenSecondDialog = (name) => {
-    setSelectedName(name); // Imposta lo stesso nome selezionato
-    setOpenSecondDialog(true);
-  };
-
   const handleCloseFirstDialog = () => {
     setOpenFirstDialog(false);
+    setOpenAlert(true);
   };
 
-  const handleCloseSecondDialog = () => {
-    setOpenSecondDialog(false);
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenAlert(false);
   };
 
   // const dispatch = useDispatch();
@@ -186,13 +321,11 @@ function TableCustom() {
                         </IconButton>
                       </Tooltip>
                       <Tooltip title="Dettagli">
-                        <IconButton
-                          onClick={() =>
-                            handleOpenSecondDialog(`${row.nome} ${row.cognome}`)
-                          }
-                        >
-                          <InfoIcon></InfoIcon>
-                        </IconButton>
+                        <Link to={`/details/${row.id}`}>
+                          <IconButton>
+                            <InfoIcon></InfoIcon>
+                          </IconButton>
+                        </Link>
                       </Tooltip>
                     </TableCell>
                   </StyledTableRow>
@@ -217,35 +350,35 @@ function TableCustom() {
             <DialogActions>
               <Button
                 variant="contained"
-                onClick={handleCloseFirstDialog}
+                onClick={() => handleCloseFirstDialog()}
                 sx={{ mr: 1 }}
               >
                 SÌ
               </Button>
-              <Button variant="outlined" onClick={handleCloseFirstDialog}>
+              <Button
+                variant="outlined"
+                onClick={() => handleCloseFirstDialog()}
+              >
                 NO
               </Button>
             </DialogActions>
           </Dialog>
-          <Dialog
-            open={openSecondDialog}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={handleCloseSecondDialog}
-            aria-describedby="alert-dialog-slide-description"
-          >
-            <DialogTitle>Dati di {selectedName}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-slide-description">
-                CIAO{" "}
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button variant="outlined" onClick={handleCloseSecondDialog}>
-                Chiudi
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <Stack spacing={2} sx={{ width: "50%" }}>
+            <Snackbar
+              open={openAlert}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert severity="success" onClose={handleClose}>
+                "Utente disattivato correttamente"
+              </Alert>
+              {/* <AlertCustom
+                type={"success"}
+                text={"Utente disattivato correttamente"}
+                onClose={handleClose}
+              ></AlertCustom> */}
+            </Snackbar>
+          </Stack>
         </div>
       </div>
     </>
