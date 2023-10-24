@@ -234,6 +234,7 @@ function TableCustom() {
             onClose={handleCloseSecondDialog}
             aria-describedby="alert-dialog-slide-description"
           >
+            
             <DialogTitle>Dati di {selectedName}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-slide-description">
