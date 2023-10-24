@@ -41,6 +41,7 @@ const theme = createTheme({
 
 function Homepage() {
   const open = useSelector((state) => state.sidebar.value);
+  // const openModal = useSelector((state) => state.modal.value);
   let lengrhDiv = open ? " w-[240px]" : "w-[50px]";
 
   return (

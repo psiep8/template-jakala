@@ -1,4 +1,5 @@
 import Table from "@mui/material/Table";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -11,6 +12,13 @@ import InfoIcon from "@mui/icons-material/Info";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import TextField from "@mui/material/TextField";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+// import { modalActions } from "../feature/modal/modalSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 function createData(nome, cognome, team, dataAssunzioneAttiva, dettagli) {
   return { nome, cognome, team, dataAssunzioneAttiva, dettagli };
@@ -46,7 +54,36 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "30%",
+  bgcolor: "white",
+  border: "2px solid #040066",
+  boxShadow: 24,
+  p: 4,
+};
+
 function TableCustom() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (name) => {
+    setSelectedName(name); // Imposta il nome selezionato
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
+
+  const [selectedName, setSelectedName] = React.useState(""); // Stato per memorizzare il nome selezionato
+
+  // const dispatch = useDispatch();
+  // const isModalOpen = useSelector((state) => state.modal.value);
+  // const open = () => {
+  //   dispatch(modalActions.open());
+  // };
+  // const close = () => {
+  //   dispatch(modalActions.close());
+  // };
   return (
     <>
       <div className="flex justify-center w-full mt-6">
@@ -70,7 +107,6 @@ function TableCustom() {
               </Button>
             </div>
           </div>
-
           <TableContainer component={Paper} className=" max-h-[500px]">
             <Table
               stickyHeader
@@ -79,20 +115,20 @@ function TableCustom() {
             >
               <TableHead>
                 <TableRow>
-                  <StyledTableCell className=" font-raleway" align="right">
+                  <StyledTableCell className=" font-raleway" align="center">
                     {/* <TableSortLabel></TableSortLabel> */}
                     NOME
                   </StyledTableCell>
-                  <StyledTableCell className=" font-raleway" align="right">
+                  <StyledTableCell className=" font-raleway" align="center">
                     COGNOME
                   </StyledTableCell>
-                  <StyledTableCell className=" font-raleway" align="right">
+                  <StyledTableCell className=" font-raleway" align="center">
                     TEAM
                   </StyledTableCell>
-                  <StyledTableCell className=" font-raleway" align="right">
+                  <StyledTableCell className=" font-raleway" align="center">
                     DATA ASSUNZIONE ATTIVA
                   </StyledTableCell>
-                  <StyledTableCell className=" font-raleway" align="right">
+                  <StyledTableCell className=" font-raleway" align="center">
                     DETTAGLI
                   </StyledTableCell>
                 </TableRow>
@@ -103,19 +139,24 @@ function TableCustom() {
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell className=" font-raleway" align="right">
+                    <TableCell className=" font-raleway" align="center">
                       {row.nome}
                     </TableCell>
-                    <TableCell className=" font-raleway" align="right">
+                    <TableCell className=" font-raleway" align="center">
                       {row.cognome}
                     </TableCell>
-                    <TableCell className=" font-raleway" align="right">
+                    <TableCell className=" font-raleway" align="center">
                       {row.team}
                     </TableCell>
-                    <TableCell className=" font-raleway" align="right">
+                    <TableCell className=" font-raleway" align="center">
                       {row.dataAssunzioneAttiva}
                     </TableCell>
-                    <TableCell className=" font-raleway" align="right">
+                    <TableCell className=" font-raleway" align="center">
+                      <IconButton
+                        onClick={() => handleOpen(`${row.nome} ${row.cognome}`)}
+                      >
+                        <RemoveCircleIcon className="text-jRed"></RemoveCircleIcon>
+                      </IconButton>
                       <IconButton>
                         <InfoIcon></InfoIcon>
                       </IconButton>
@@ -125,6 +166,27 @@ function TableCustom() {
               </TableBody>
             </Table>
           </TableContainer>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {selectedName}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
+                Sei sicuro di voler disattivare l'utente?
+              </Typography>
+              <Box sx={{ placeItems: "end" }}>
+                <Button variant="contained" sx={{ mr: 3 }}>
+                  SÌ
+                </Button>
+                <Button variant="outlined">NO</Button>
+              </Box>
+            </Box>
+          </Modal>
         </div>
       </div>
     </>
