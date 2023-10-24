@@ -60,6 +60,7 @@ function TableCustom() {
                 id="outlined-basic"
                 variant="outlined"
                 label="Cerca utente..."
+                size="small"
               />
               <Button
                 startIcon={<PersonAddAlt1Icon></PersonAddAlt1Icon>}
