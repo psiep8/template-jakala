@@ -19,10 +19,21 @@ import { useSelector } from "react-redux";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+import Tooltip from "@mui/material/Tooltip";
 
 function createData(nome, cognome, team, dataAssunzioneAttiva, dettagli) {
   return { nome, cognome, team, dataAssunzioneAttiva, dettagli };
 }
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const rows = [
   createData("Mario", "Rossi", "Team A", "Sì"),
@@ -152,21 +163,27 @@ function TableCustom() {
                       {row.dataAssunzioneAttiva}
                     </TableCell>
                     <TableCell className=" font-raleway" align="center">
-                      <IconButton
-                        onClick={() => handleOpen(`${row.nome} ${row.cognome}`)}
-                      >
-                        <RemoveCircleIcon className="text-jRed"></RemoveCircleIcon>
-                      </IconButton>
-                      <IconButton>
-                        <InfoIcon></InfoIcon>
-                      </IconButton>
+                      <Tooltip title="Disattiva">
+                        <IconButton
+                          onClick={() =>
+                            handleOpen(`${row.nome} ${row.cognome}`)
+                          }
+                        >
+                          <RemoveCircleIcon className="text-jRed"></RemoveCircleIcon>
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="Dettagli">
+                        <IconButton>
+                          <InfoIcon></InfoIcon>
+                        </IconButton>
+                      </Tooltip>
                     </TableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
-          <Modal
+          {/* <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
@@ -186,7 +203,29 @@ function TableCustom() {
                 <Button variant="outlined">NO</Button>
               </Box>
             </Box>
-          </Modal>
+          </Modal> */}
+          <div>
+            <Dialog
+              open={open}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={handleClose}
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle>{selectedName}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                  Vuoi disattivare l'utente?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button variant="contained" sx={{ mr: 1 }}>
+                  SÌ
+                </Button>
+                <Button variant="outlined">NO</Button>
+              </DialogActions>
+            </Dialog>
+          </div>
         </div>
       </div>
     </>
