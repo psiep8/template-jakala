@@ -35,6 +35,20 @@ const theme = createTheme({
         },
       },
     },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: "#040ab2",
+        },
+      },
+    },
+    MuiMenu: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: "white",
+        },
+      },
+    },
     MuiTable: {
       styleOverrides: {
         root: {
@@ -58,6 +72,13 @@ const theme = createTheme({
       },
     },
     MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "white",
+        },
+      },
+    },
+    MuiSelect: {
       styleOverrides: {
         root: {
           backgroundColor: "white",

@@ -78,7 +78,7 @@ function SideBarCustom(props) {
 
   return (
     <>
-      <Drawer variant="permanent" open={open}>
+      <Drawer className="bg-black" variant="permanent" open={open}>
         <DrawerHeader>
           {open ? (
             <Typography variant="h6" component="div" className=" flex-grow">

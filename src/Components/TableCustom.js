@@ -38,7 +38,8 @@ function createData(
   nome,
   cognome,
   team,
-  dataAssunzioneAttiva,
+  dataAssunzione,
+  attivazione,
   dataDiNascita,
   luogoDiNascita,
   sesso,
@@ -53,7 +54,8 @@ function createData(
     nome,
     cognome,
     team,
-    dataAssunzioneAttiva,
+    dataAssunzione,
+    attivazione,
     dataDiNascita,
     luogoDiNascita,
     sesso,
@@ -79,6 +81,7 @@ export const rows = [
     "Mario",
     "Rossi",
     "Team A",
+    "2020-01-15",
     "Sì",
     "1990-03-15",
     "Milano",
@@ -94,6 +97,7 @@ export const rows = [
     "Anna",
     "Verdi",
     "Team B",
+    "2021-05-10",
     "No",
     "1988-07-22",
     "Roma",
@@ -109,6 +113,7 @@ export const rows = [
     "Luigi",
     "Bianchi",
     "Team C",
+    "2019-11-03",
     "Sì",
     "1995-11-10",
     "Napoli",
@@ -124,6 +129,7 @@ export const rows = [
     "Laura",
     "Neri",
     "Team A",
+    "2022-03-18",
     "No",
     "1987-02-05",
     "Torino",
@@ -139,6 +145,7 @@ export const rows = [
     "Lorenzo",
     "Biraghi",
     "Team B",
+    "2020-09-05",
     "Sì",
     "1992-09-18",
     "Milano",
@@ -154,6 +161,7 @@ export const rows = [
     "Giuseppe",
     "Romagnoli",
     "Team B",
+    "2021-08-12",
     "Sì",
     "1993-06-30",
     "Roma",
@@ -169,6 +177,7 @@ export const rows = [
     "Andrea",
     "Ravasio",
     "Team B",
+    "2018-04-25",
     "Sì",
     "1989-12-07",
     "Napoli",
@@ -285,7 +294,10 @@ function TableCustom() {
                     TEAM
                   </StyledTableCell>
                   <StyledTableCell className=" font-raleway" align="center">
-                    DATA ASSUNZIONE ATTIVA
+                    DATA ASSUNZIONE
+                  </StyledTableCell>
+                  <StyledTableCell className=" font-raleway" align="center">
+                    ATTIVA
                   </StyledTableCell>
                   <StyledTableCell className=" font-raleway" align="center">
                     DETTAGLI
@@ -308,7 +320,10 @@ function TableCustom() {
                       {row.team}
                     </TableCell>
                     <TableCell className=" font-raleway" align="center">
-                      {row.dataAssunzioneAttiva}
+                      {row.dataAssunzione}
+                    </TableCell>
+                    <TableCell className=" font-raleway" align="center">
+                      {row.attivazione}
                     </TableCell>
                     <TableCell className=" font-raleway" align="center">
                       <Tooltip title="Disattiva">
@@ -370,7 +385,7 @@ function TableCustom() {
               onClose={handleClose}
             >
               <Alert severity="success" onClose={handleClose}>
-                "Utente disattivato correttamente"
+                Utente disattivato correttamente
               </Alert>
               {/* <AlertCustom
                 type={"success"}
